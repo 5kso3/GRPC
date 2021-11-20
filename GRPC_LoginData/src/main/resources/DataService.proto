@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "com.data.grpc";
+
+service data {
+	rpc getAllLogin(Empty) returns (LoginResponse);
+	rpc addLogin(Login) returns (IsSuccess);
+}
+message LoginResponse{
+	repeated Login login = 1;
+}
+message Empty {
+}
+message Login {
+	string id = 1;
+	string password = 2;
+}
+message IsSuccess {
+	bool isSuccess = 1;
+}

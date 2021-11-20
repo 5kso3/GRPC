@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option java_package = "com.data.grpc";
+
+service data {
+	rpc getAllStudentData(Empty) returns (StudentResponse);
+	rpc getStudent(dataInfo) returns (Student);
+	rpc dataInfoIsSuccess(dataInfo) returns (IsSuccess);
+	rpc getAllCourseData(Empty) returns (CourseResponse);
+	rpc getCourse(dataInfo) returns (Course);
+	rpc enrollment(dataInfo) returns (dataInfo);
+	rpc getAllEnrollmentData(Empty) returns (EnrollmentResponse);
+	rpc addEnrollment(dataInfo) returns (IsSuccess);
+	rpc isRegisteredStudent(dataInfo) returns (IsSuccess);
+}
+
+message Empty{
+	string token = 1;
+}
+message StudentResponse {
+	repeated Student student = 1;
+}
+message Student {
+	string studentId = 1;
+	string name = 2;
+	string department = 3;
+	repeated string completedCourses = 4;
+}
+message CourseResponse {
+	repeated Course course = 1;
+}
+message Course {
+	string courseId = 1;
+	string professor = 2;
+	string name = 3;
+	repeated string prerequisites = 4;
+}
+message dataInfo{
+	string stringDataInfo = 1;
+	string token = 2;
+}
+message IsSuccess {
+	bool isSuccess = 1;
+}
+message Enrollment {
+	string studentId = 1;
+	string courseId = 2;
+}
+message EnrollmentResponse {
+	repeated Enrollment enrollment = 1;
+}
